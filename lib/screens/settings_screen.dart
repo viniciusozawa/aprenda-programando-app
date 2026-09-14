@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../models/progress.dart';
+import 'statusbar/statusbar_menu_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -83,6 +84,27 @@ class _SettingsScreenState extends State<SettingsScreen> with SingleTickerProvid
                               subtitle: const Text('Apaga todas as estrelas e desbloqueia tudo',
                                 style: TextStyle(color: AppColors.textSub, fontSize: 11)),
                               onTap: () => _confirmReset(context),
+                            ),
+                          ),
+
+                          const SizedBox(height: 28),
+                          _sectionTitle('🧪 Estudos de Widgets'),
+                          const SizedBox(height: 10),
+
+                          Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.surface,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListTile(
+                              leading: const Text('📶', style: TextStyle(fontSize: 22)),
+                              title: const Text('Exemplos de StatusBar',
+                                style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 14)),
+                              subtitle: const Text('Estilo e visibilidade da barra de status',
+                                style: TextStyle(color: AppColors.textSub, fontSize: 11)),
+                              trailing: const Icon(Icons.chevron_right, color: AppColors.textSub),
+                              onTap: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const StatusBarMenuScreen())),
                             ),
                           ),
 
