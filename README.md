@@ -8,7 +8,7 @@
 
 <br/>
 
-![status](https://img.shields.io/badge/status-planejamento%20%F0%9F%9A%A7-FACC15?style=for-the-badge&labelColor=0C0A14)
+![status](https://img.shields.io/badge/status-em%20desenvolvimento%20%F0%9F%9A%80-FACC15?style=for-the-badge&labelColor=0C0A14)
 ![plataforma](https://img.shields.io/badge/plataforma-Android-34D399?style=for-the-badge&logo=android&logoColor=white&labelColor=0C0A14)
 ![linguagem](https://img.shields.io/badge/linguagem-Dart-818CF8?style=for-the-badge&logo=dart&logoColor=white&labelColor=0C0A14)
 ![framework](https://img.shields.io/badge/framework-Flutter-E11D48?style=for-the-badge&logo=flutter&logoColor=white&labelColor=0C0A14)
@@ -23,15 +23,18 @@
 - [📋 Sumário](#-sumário)
 - [🎯 Sobre o Projeto](#-sobre-o-projeto)
 - [🧩 O Problema → A Solução](#-o-problema--a-solução)
-- [🕹️ Como o Jogo Vai Funcionar](#️-como-o-jogo-vai-funcionar)
+- [🕹️ Como o Jogo Funciona](#️-como-o-jogo-funciona)
+- [📱 Telas Implementadas](#-telas-implementadas)
 - [🧠 Conceitos Ensinados](#-conceitos-ensinados)
 - [⚙️ Tecnologias](#️-tecnologias)
+- [▶️ Como Rodar](#️-como-rodar)
+- [📁 Estrutura do Projeto](#-estrutura-do-projeto)
+- [📚 Documentação](#-documentação)
 - [🎨 Identidade Visual](#-identidade-visual)
 - [⭐ Diferenciais](#-diferenciais)
 - [🗺️ Roadmap](#️-roadmap)
 - [👥 Equipe](#-equipe)
 - [🏫 Instituição](#-instituição)
-  - [🚧 Este projeto está em fase de planejamento — em breve, o código-fonte! 🚧](#-este-projeto-está-em-fase-de-planejamento--em-breve-o-código-fonte-)
 
 <br/>
 
@@ -76,16 +79,37 @@ Programação parece difícil para iniciantes:
 
 <br/>
 
-## 🕹️ Como o Jogo Vai Funcionar
+## 🕹️ Como o Jogo Funciona
 
-| Mecânica | Descrição |
-|---|---|
-| 🧱 **Editor de comandos** | O jogador monta sequências de instruções em português (*andar*, *virar*, *repetir*, *se/senão*) |
-| ▶️ **Simulador em tempo real** | Um botão "Executar" anima o personagem instantaneamente conforme os comandos montados |
-| 🧗 **Fases progressivas** | Desafios do mais simples ao mais complexo, um conceito novo por fase |
-| ⭐ **Sistema de estrelas** | Avaliação de 1 a 3 estrelas conforme a eficiência da solução |
-| 🧪 **Modo Livre** | Área sem objetivo fixo para experimentar comandos livremente |
-| 🏅 **Conquistas** | Medalhas e recompensas visuais ao completar mundos e metas |
+| Mecânica | Descrição | Status |
+|---|---|---|
+| 🧱 **Editor de comandos** | O jogador monta sequências de instruções em português (*andar*, *virar*, *repetir*, *se/senão*) | ✅ andar · virar · repetir |
+| ▶️ **Simulador em tempo real** | Um botão "Executar" anima o robô 🤖 passo a passo até a bandeira 🚩 | ✅ |
+| 🧗 **Fases progressivas** | Desafios do mais simples ao mais complexo, um conceito novo por fase | ✅ Mundo 1 |
+| ⭐ **Sistema de estrelas** | Avaliação de 1 a 3 estrelas conforme a eficiência da solução (menos blocos = mais estrelas) | ✅ |
+| 🏅 **Conquistas** | Tela de troféus com estrelas e progresso por mundo | ✅ |
+| 🧪 **Modo Livre** | Área sem objetivo fixo para experimentar comandos livremente | 🔜 |
+
+<br/>
+
+## 📱 Telas Implementadas
+
+| # | Tela | Arquivo | O que faz |
+|---|---|---|---|
+| 1 | 🏠 **Início** | `home_screen.dart` | Logo animado, título e botões "Começar a Jogar" / "Continuar Progresso" |
+| 2 | 🌍 **Escolha de Mundo** | `world_select_screen.dart` | 4 mundos (Floresta Mágica, Cidade Futurista, Espaço Profundo, Dimensão Digital) com progresso e bloqueio |
+| 3 | 📖 **Tutorial** | `tutorial_screen.dart` | 4 páginas deslizáveis explicando o jogo (aparece na 1ª vez em cada mundo) |
+| 4 | 🗺️ **Mapa de Fases** | `phase_map_screen.dart` | Caminho em zigue-zague com fases concluídas, atual (pulsando) e bloqueadas |
+| 5 | 🎮 **Jogo** | `game_screen.dart` | Grade 7×5, blocos de comando, execução animada do robô e verificação da solução |
+| 6 | 🏆 **Vitória** | `victory_screen.dart` | Troféu, estrelas animadas, confete e opções de próxima fase / tentar de novo |
+| 7 | 🥇 **Troféus** | `trophy_screen.dart` | Estatísticas gerais e estrelas de cada fase por mundo |
+| 8 | ⚙️ **Configurações** | `settings_screen.dart` | Áudio, resetar progresso, estudos de widgets e informações do app |
+| + | 📶 **Estudo: StatusBar** | `screens/statusbar/` | Menu + 2 exemplos: estilo da barra (`AnnotatedRegion`) e visibilidade / modo imersivo (`SystemChrome`) |
+
+```
+Início → Escolha de Mundo → Tutorial (1ª vez) → Mapa de Fases → Jogo → Vitória
+                 └── barra inferior: Troféus · Configurações → Estudo StatusBar
+```
 
 <br/>
 
@@ -116,7 +140,55 @@ Cada conceito é apresentado de forma gradual — um por bloco de fases — refo
 
 </div>
 
-O app será desenvolvido nativamente em **Flutter**, com foco inicial na plataforma **Android**, priorizando um funcionamento 100% mobile — sem necessidade de computador.
+O app é desenvolvido em **Flutter** (Dart 3, Material 3), com foco inicial na plataforma **Android**, priorizando um funcionamento 100% mobile — sem necessidade de computador. Não usa pacotes externos além do próprio Flutter.
+
+<br/>
+
+## ▶️ Como Rodar
+
+Pré-requisito: [Flutter SDK](https://docs.flutter.dev/get-started/install) instalado (`flutter doctor` sem erros).
+
+```bash
+git clone https://github.com/viniciusozawa/aprenda-programando-app.git
+cd aprenda-programando-app
+flutter pub get
+flutter run
+```
+
+| Comando | O que faz |
+|---|---|
+| `flutter run` | Abre o jogo |
+| `flutter run -t lib/main_statusbar.dart` | Abre direto nos exemplos de StatusBar |
+| `flutter test` | Roda os testes automatizados (3 testes) |
+| `flutter analyze` | Verifica o código |
+
+<br/>
+
+## 📁 Estrutura do Projeto
+
+```
+lib/
+├── main.dart                 # ponto de entrada do jogo
+├── main_statusbar.dart       # ponto de entrada dos exemplos de StatusBar
+├── theme/app_theme.dart      # paleta Neon Arcade (AppColors) e tema (AppTheme)
+├── models/
+│   ├── game_models.dart      # Phase, World, CommandBlock + dados dos mundos/fases
+│   └── progress.dart         # GameProgress: estrelas e tutoriais vistos
+├── widgets/app_widgets.dart  # NeonButton, StarRow, NeonProgressBar, AppBottomNav...
+└── screens/                  # as 8 telas do jogo + statusbar/ (estudo da Fase 5)
+test/                         # testes de widget
+docs/                         # entregas escritas e documentação do código
+```
+
+<br/>
+
+## 📚 Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| [📘 Documentação do Código](docs/DOCUMENTACAO_DO_CODIGO.md) | Todos os arquivos, classes, heranças, lógica do jogo, animações e testes |
+| [📄 Fase 4 — Catálogo de Widgets](docs/Fase4_Catalogo_Widgets_Flutter_CodePlayBR.docx) | Catálogo dos widgets Flutter usados no app |
+| [📄 Fase 5 — Pesquisa StatusBar](docs/Fase5_Pesquisa_StatusBar_CodePlayBR.docx) | Pesquisa sobre a barra de status e os dois exemplos implementados |
 
 <br/>
 
@@ -153,10 +225,11 @@ Paleta de cores definida para o projeto — **"Neon Arcade"**, inspirada em est�
 
 - [x] **Fase 1** — Definição do tema, equipe e professor orientador
 - [x] **Fase 2** — Pesquisa de mercado e planejamento de conteúdo
-- [ ] **Fase 3** — Protótipo jogável (MVP em Flutter)
-- [ ] **Fase 4** — Testes com usuários de 10–14 anos e ajustes de UX/UI
-- [ ] **Fase 5** — Expansão de mundos e conceitos avançados
-- [ ] **Futuro** — Publicação gratuita na Play Store
+- [x] **Fase 3** — Protótipo do app em Flutter
+- [x] **Fase 4** — Catálogo de widgets Flutter usados no projeto
+- [x] **Fase 5** — Implementação das interfaces do app (8 telas) + pesquisa e exemplos de StatusBar
+- [ ] **Próximos passos** — Salvar progresso no aparelho, blocos *se/senão* e *função*, novas fases e mundos, sons
+- [ ] **Futuro** — Testes com usuários de 10–14 anos e publicação gratuita na Play Store
 
 <br/>
 
@@ -191,7 +264,7 @@ Projeto desenvolvido para a disciplina de **Desenvolvimento de Dispositivos Móv
 
 <div align="center">
 
-### 🚧 Este projeto está em fase de planejamento — em breve, o código-fonte! 🚧
+### 🚀 Em desenvolvimento — Fase 5: interfaces do app implementadas! 🚀
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E11D48,50:818CF8,100:0C0A14&height=120&section=footer"/>
 
